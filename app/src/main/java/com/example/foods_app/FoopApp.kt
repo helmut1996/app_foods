@@ -6,17 +6,17 @@ import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
 class FoopApp:Application() {
-companion object {
-    lateinit var database: FoodDatabase
-}
-
-
-    override fun onCreate() {
-        super.onCreate()
-        database = Room.databaseBuilder(
-            this,
-            FoodDatabase::class.java,
-            "FoodDatabase"
-        ).build()
-    }
+//companion object {
+//    lateinit var database: FoodDatabase
+//}
+//
+//
+//    override fun onCreate() {
+//        super.onCreate()
+//        database = Room.databaseBuilder(
+//            this,
+//            FoodDatabase::class.java,
+//            "FoodDatabase"
+//        ).build()
+//    }
 }

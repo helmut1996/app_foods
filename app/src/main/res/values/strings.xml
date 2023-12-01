@@ -6,4 +6,5 @@
     <string name="hint_name">name</string>
     <string name="hint_type">type</string>
     <string name="foodError">"Error de insercion "</string>
+    <string name="foodSuccess">Se Guardo el Registro correctamente</string>
 </resources>

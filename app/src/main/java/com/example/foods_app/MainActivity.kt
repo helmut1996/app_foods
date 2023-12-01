@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     @Inject lateinit var fakeDatabase: FakeDatabase
+    @Inject lateinit var dataSource: DataSource
     private val TAG = "DEV"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +29,13 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    private fun clear() {
+       with(binding){
+           tilPrice.editText?.setText("")
+           tilName.editText?.setText("")
+           tilType.editText?.setText("")
+       }
+    }
     private fun setupAutoComplete() {
         val type = fakeDatabase.getAllTypes().map { it.name }
         val typeAdapter= ArrayAdapter(this,android.R.layout.simple_dropdown_item_1line,type)
@@ -36,9 +44,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupButtonclear(){
         binding.btnClear.setOnClickListener {
-            binding.tilPrice.editText?.setText("")
-            binding.tilName.editText?.setText("")
-            binding.tilType.editText?.setText("")
+            clear()
         }
     }
     private fun setupButton(){
@@ -54,12 +60,15 @@ class MainActivity : AppCompatActivity() {
     }
     private fun saveFood(food:FoodEntity){
         lifecycleScope.launch {
-            val id = FoopApp.database.foodDao().insertFood(food)
 
-            if (id< 1) {
-             Snackbar.make(binding.root, R.string.foodError, Snackbar.LENGTH_SHORT).show()
-            }else{
-                Log.d(TAG, "Se Guardo el Registro")
+            dataSource.addFood(food){ id->
+                if (id< 1) {
+                    Snackbar.make(binding.root, R.string.foodError, Snackbar.LENGTH_SHORT).show()
+                }else{
+                    Log.d(TAG, "Se Guardo el Registro")
+                    Snackbar.make(binding.root, R.string.foodSuccess, Snackbar.LENGTH_SHORT).show()
+                    clear()
+                }
             }
         }
     }
