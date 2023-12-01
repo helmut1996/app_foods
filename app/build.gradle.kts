@@ -41,7 +41,7 @@ android {
 }
 
 
-val lifecycle_version = "2.5.1"
+val lifecycle_version = "2.6.2"
 dependencies {
 
     implementation("com.google.dagger:hilt-android:2.48")

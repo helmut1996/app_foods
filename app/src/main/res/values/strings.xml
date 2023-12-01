@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">FOODS_APP</string>
+    <string name="food_btn_save">Save</string>
+    <string name="food_btn_clear">clear\n</string>
+    <string name="hint_price">price</string>
+    <string name="hint_name">name</string>
+    <string name="hint_type">type</string>
 </resources>
