@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class FoodEntity (
     @PrimaryKey(autoGenerate = true)
-    var id_food:Long,
-    var name:String,
-    var type:String
-    )
+    var id: Long = 0,
+    var price: Double = 0.0,
+    var name: String = "",
+    var type: Long = 0)
